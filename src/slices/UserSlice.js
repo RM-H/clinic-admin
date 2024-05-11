@@ -9,7 +9,7 @@ const initialstate = {
     items: [],
     notifications :0 ,
     dashboard:[],
-    env:1,
+
 
     status: ''
 }
@@ -66,8 +66,4 @@ export const dashboardSelector = createDraftSafeSelector(
 
 
 
-// changing between bilitim and safiran
-export const environmentSelector = createDraftSafeSelector(
-    (state) => state,
-    (state) => state.userinfo.env
-)
+

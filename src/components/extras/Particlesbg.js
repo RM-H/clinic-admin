@@ -29,20 +29,20 @@ const Particlesbg = () => {
     const options = {
         background: {
             color: {
-                value: "#000000"
+                value: "#1a5ca4"
             }
         },
         fpsLimit: 120,
         particles: {
             number: {
-                value: 6,
+                value: 11,
                 density: {
                     enable: false,
                     value_area: 800
                 }
             },
             color: {
-                value: [ "#5e059b", "#ff00c6", "#fff" ]
+                value: [ "#ffffff", "#faee02", "#CAF4FF" , "#ff4400", ]
             },
             shape: {
                 type: "circle"
@@ -63,7 +63,7 @@ const Particlesbg = () => {
                 }
             },
             size: {
-                value: 51,
+                value: 69,
                 random: {
                     enable: true,
                     minimumValue: 10
@@ -78,7 +78,7 @@ const Particlesbg = () => {
             },
             move: {
                 enable: true,
-                speed:4,
+                speed:5,
                 direction: "none",
                 random: true,
                 straight: false,

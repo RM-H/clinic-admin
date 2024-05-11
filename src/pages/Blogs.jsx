@@ -6,7 +6,7 @@ import {getBlogs, url} from "../services/service";
 import axios from "axios";
 import {toast} from "react-toastify";
 import {useSelector} from "react-redux";
-import {environmentSelector, userinfoSelector} from "../slices/UserSlice";
+import { userinfoSelector} from "../slices/UserSlice";
 import {useNavigate} from "react-router-dom";
 import {Spinner, BlogsTable} from "../components";
 import ReactQuill from "react-quill";
@@ -29,7 +29,7 @@ const Blogs = () => {
     const [search, setSearch] = useState('')
 
 
-    const env = useSelector(environmentSelector)
+
 
 
     const getData = async (page) => {

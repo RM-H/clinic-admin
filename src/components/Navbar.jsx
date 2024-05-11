@@ -1,6 +1,6 @@
 import {Email,Settings} from '@mui/icons-material'
 import {useSelector,useDispatch} from "react-redux";
-import {userinfoSelector,dashboardSelector,environmentSelector,changeEnv} from "../slices/UserSlice";
+import {userinfoSelector,changeEnv} from "../slices/UserSlice";
 import Spinner from "./extras/Spinner";
 import {Badge, FormControl, InputLabel, Menu, Select} from '@mui/material'
 import {useNavigate} from 'react-router-dom'
@@ -33,8 +33,7 @@ const Navbar = () => {
 
     const dataneeded = useSelector(userinfoSelector)
     const status = useSelector((state) => state.userinfo.status)
-    const notifications = useSelector(dashboardSelector)
-    const selectedEnv = useSelector(environmentSelector)
+
     const nav = useNavigate()
 
 
@@ -88,33 +87,13 @@ const Navbar = () => {
                 <div className="navbar__bl">
                     <nav className="navbar" role="navigation" aria-label="main navigation">
                         <div className="navbar-brand">
-                            {/*drop down*/}
-                            <FormControl variant='standard' color='secondary'
-                                         className='yekan' sx={{minWidth:'10rem' , my:'auto'}}>
-                                <InputLabel className='yekan' id="demo-simple-select-label">انتخاب محیط</InputLabel>
-                                <Select
-                                    labelId="demo-simple-select-label"
-                                    id="demo-simple-select"
-                                    defaultValue={1}
-                                    onChange={handleEnvChange}
-
-                                    label="Age"
-                                    className='yekan'
 
 
 
-                                >
-                                    <MenuItem className='yekan' value={1}>بیلیتیم</MenuItem>
-                                    <MenuItem className='yekan' value={2}>سفیران نوآوری و اندیشه</MenuItem>
-
-                                </Select>
-                            </FormControl>
 
 
-
-                            {/*changing image based on selected env*/}
                             <p className="navbar-item logo">
-                                <img src={`/assets/icons/${selectedEnv===1 ? 'logo-biliti.svg':'logo-safir.svg'}`} draggable='false' style={{maxHeight:"3rem"}} width="200"/>
+                                <img src={'/assets/icons/logo.svg'} draggable='false' style={{maxHeight:"4rem"}} width="150"/>
                             </p>
 
                             <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false"
@@ -127,17 +106,17 @@ const Navbar = () => {
 
                         </div>
 
+                        <div className='navbar-item'>
+                            <h2  className='pinar'>
+                                کلینیک تخصصی آلرژی دکتر ستارزاده
+                            </h2>
+                        </div>
+
 
 
                         <div className="navbar-start ">
                             <div className="navbar-item">
-                                <div className="header__icons is-flex  ">
-                                    <Badge className={notifications.unseen_contacts_count >0 && 'dashboardimageAnimated'} badgeContent={notifications.unseen_contacts_count} color='error'>
-                                        <Email  onClick={()=>nav('/admin/messages')} />
-                                    </Badge>
 
-
-                                </div>
                                 <div className="is-flex  userinfo">
 
                                     <div className=" is-flex is-flex-direction-column info">

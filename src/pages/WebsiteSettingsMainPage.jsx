@@ -20,8 +20,8 @@ const WebsiteSettingsMainPage = () => {
 
 
               </div>
-                <div className='column is-3  is-flex is-align-content-center is-flex-direction-column  borderrad1' style={{minHeight:'10rem'}}>
-                    <div className='lightborder borderrad1' style={{height:'100%'}}>
+                <div className='column is-3  is-flex is-align-content-center is-flex-direction-column  borderrad1 ' style={{minHeight:'10rem'}}>
+                    <div className='lightborder borderrad1 shadowtwo' style={{height:'100%'}}>
                         <Button onClick={()=>nav('/admin/site-settings/info')} variant='contained' color='info' className='width100 pinar'>
                             عناوین و اطلاعات تماس
                             <Settings/>
@@ -39,23 +39,7 @@ const WebsiteSettingsMainPage = () => {
 
                 </div>
 
-              <div className='column is-3  is-flex is-align-content-center is-flex-direction-column  borderrad1' style={{minHeight:'10rem'}}>
 
-                  <div className='lightborder' style={{height:'100%'}}>
-                      <Button onClick={()=>nav('/admin/site-settings/faq')} variant='contained' color='info' className='width100 pinar'>
-                          سوالات متداول
-                          <Settings/>
-                      </Button>
-                      <article className='yekan p-1'>
-                          تنظیمات مربوط به :
-                          <code>
-                              Frequently asked questions
-                          </code>
-
-                      </article>
-                  </div>
-
-              </div>
 
 
 

@@ -34,7 +34,7 @@ const Userbanner = () => {
                                 content
                             }
 
-                            <h4> پنل خود را مدیریت کنید ارباب 🙌</h4>
+                            <h4> پنل خود را مدیریت کنید دکتر 🩺</h4>
                         </span>
 
                         <div className='columns m-0 width100 lightborder borderrad1 '>

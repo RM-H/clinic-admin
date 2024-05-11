@@ -45,9 +45,8 @@ const Login = () => {
 
 
                 <div className="main-login " style={{
-                    backgroundImage: "url('assets/images/bg1.avif')",
-                    backgroundRepeat: 'no-repeat',
-                    backgroundSize: 'cover'
+                 backgroundColor:'rgba(255,255,255,0.4)',
+                    backdropFilter:'blur(0.6rem)'
                 }}>
                     <input type="checkbox" id="chk" aria-hidden="true"/>
 

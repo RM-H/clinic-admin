@@ -44,7 +44,7 @@ body input::placeholder {
 
 :root {
     --first-color: #B9E901;
-    --second-color: #601FEB;
+    --second-color: #1a5ca4;
     --third-color: #111111;
     --fourth-color: #2E2E2E;
     --other-color: #f1f1f100;
@@ -65,21 +65,25 @@ body input::placeholder {
 .clrtwotext {
    color: #601FEB !important;
 }
+
+
+
 .clrthree {
-    background-color: #111111;
+    background-color: #d7f0f6;
 }
-.clrfour {
-    background-color: #2E2E2E;
-}
-.clrfive {
-    background-color: #f1f1f100;
-}
-.clrsix {
-    background-color: #484747;
-}
-.clrseven {
-    background-color: #FF0000 !important;
-}
+
+/*.clrfour {*/
+/*    background-color: #2E2E2E;*/
+/*}*/
+/*.clrfive {*/
+/*    background-color: #f1f1f100;*/
+/*}*/
+/*.clrsix {*/
+/*    background-color: #484747;*/
+/*}*/
+/*.clrseven {*/
+/*    background-color: #FF0000 !important;*/
+/*}*/
 
 
 h1, h2, h3, h4, h5 {
@@ -100,59 +104,7 @@ body {
 
     /* background: linear-gradient(to bottom, #0f0c29, #302b63,#24243e); */
 }
-.body-safir {
-    background: rgba(0, 166, 81, 0.06);
-    .clrtwo {
-        background-color: #00A651 !important;
-    }
-    .clrone {
-        background-color: #A60055 !important;
-        color: #ffffff;
-    }
 
-    .clrtwotext {
-        color: #00A651 !important;
-    }
-
-    .dashboard__menu svg {
-        font-size: 24px;
-        color: #5EBF55;
-    }
-    .dashboard__menu:hover {
-        background: #b7b4b4;
-        color: #ffffff !important;
-    }
-
-    .dashboardActive  {
-        background: #5EBF55
-
-
-
-    }
-    .dashboardActive svg  {
-        color: #ffffff !important;
-
-
-
-    }
-    .dashboardActive h3  {
-
-        color: #ffffff !important;
-
-
-    }
-    .header__icons svg {
-        margin-inline: 10px;
-        font-size: 25px;
-        cursor: pointer;
-        color: #00A651
-    }
-
-    .fa-gear {
-        color: #00A651 !important
-    }
-
-}
 
 
 .body-bilit {
@@ -167,7 +119,7 @@ body {
     overflow: hidden;
     z-index: 10;
 
-    box-shadow: 0 1px 40px rgba(0, 0, 0, 0.63);
+    box-shadow: 0px 0px 18px 1px rgba(255, 255, 255, 0.6);
     border-radius: 1.618rem;
 }
 
@@ -242,10 +194,11 @@ body {
 
 .main-login .login {
     height: 460px;
-    background-color: #eee;
+    background-color: rgb(255, 255, 255);
+
     border-radius: 60% / 10%;
     transform: translateY(-180px);
-    transition: .8s ease-in-out;
+    transition: .6s ease-in-out;
 }
 
 .main-login .login label {
@@ -403,14 +356,14 @@ main {
 
 .dashboard__menu {
     cursor: pointer;
-    height: 3.1em;
+    height: 3em;
     display: flex;
     align-items: center;
     padding: 0 5px;
     border-radius: 20px;
     width: 100%;
     transition: .3s all ease-out;
-    margin-bottom: 16px;
+    margin-bottom: 1rem;
 }
 
 .dashboard__menu:hover {
@@ -861,6 +814,7 @@ main {
     box-shadow: 0.3rem 0.3rem 0.6rem 0px rgba(0,0,0,0.5);
 
 }
+
 
 
 

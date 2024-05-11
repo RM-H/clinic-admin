@@ -1,131 +1,57 @@
-import {UserBanner, Snippet, Table, Spinner} from '../components'
+import {UserBanner, Spinner, BlogsTable} from '../components'
 import {useSelector} from "react-redux";
 import {dashboardSelector} from "../slices/UserSlice";
 
-import React from "react";
+import React, {useEffect, useState} from "react";
+import {getBlogs, url} from "../services/service";
+import {toast} from "react-toastify";
+import {DeleteOutline, Edit} from "@mui/icons-material";
+import axios from "axios";
+import {useNavigate, Link} from "react-router-dom";
 
 
 const Landing = () => {
 
 
-    const dataneeded = useSelector(dashboardSelector)
-    let snippets
-    if (dataneeded.length !== 0) {
-
-        snippets =
-            <>
 
 
-                <Snippet title='تعداد کل سفارشات' statistic={dataneeded.orders_count}
-                         description='کل سفارشات انجام شده تا امروز (اعم از تئاتر، کنسرت, همایش و ویدیو)'/>
-                <Snippet title='تعداد کنسرت های برگزار شده ' statistic={dataneeded.concerts_count}
-                         description='کنسرت های برگزار شده توسط مجموعه'/>
-                <Snippet title='مبلغ کل سفارشات ' statistic={dataneeded.orders_amount}
-                         description='مبلغ کل فروش انجام شده توسط مجمعه از تمام فعالیت ها و رویداد های صورت گرفته.'/>
-                <Snippet title=' کل فروش ویدیو  ' statistic={dataneeded.videos_amount}
-                         description='مبلغ کل ویدیو های فروخته شده.'/>
-
-            </>
-    } else {
-        snippets=
-            <div className='column is-12 has-text-centered'>
-                <Spinner/>
-            </div>
-
-    }
-
-
-    let tables
-    if (dataneeded.length !== 0) {
-        tables=<>
-            <Table title='آخرین سفارشات' data={dataneeded.last_orders.map((item)=>{
-                return(
-                    <tr className='yekan'>
-                        <td>
-                            {new Date(item.orders.time*1000).toLocaleDateString('fa-IR')}
-                        </td>
-
-                        <td>
-                            {item.orders.name}
-                        </td>
-                        <td>
-                            {item.orders.amount}
-                        </td>
-                        <td>
-                            {item.concerts.title}
-                        </td>
-
-                        <td>
-                            {item.cities.name}
-                        </td>
-                        <td>
-                            {item.locations_view.name}
-                        </td>
-
-                    </tr>
-                )
-            })} />
-
-            <Table title='آخرین سفارشات ویدیویی' data={dataneeded.last_videos.map((item)=>{
-                return(
-                    <tr className='yekan'>
-                        <td>
-                            {new Date(item.video_sells.time*1000).toLocaleDateString('fa-IR')}
-                        </td>
-
-                        <td>
-                            {item.users.name}
-                        </td>
-                        <td>
-                            {item.video_sells.amount}
-                        </td>
-                        <td>
-                            {item.videos.title}
-                        </td>
-
-                        <td>
-                            {item.cities.name}
-                        </td>
-                        <td>
-                            {item.videos.location_name}
-                        </td>
-
-                    </tr>
-                )
-            })} />
-
-
-        </>
-    } else {
-        tables= <div className='column is-12 has-text-centered'>
-            <Spinner/>
-        </div>
-    }
 
 
     return (
         <>
-            <div className='columns m-0 is-multiline' >
+            <div className='columns m-0 is-multiline'>
 
 
-            <UserBanner/>
-            <div className='columns m-0 is-multiline m-0 mt-3'>
-                {
-                    snippets
-                }
-            </div>
-                <div className='column  is-12 p-0'>
+                <UserBanner/>
 
-                    <div className='columns m-0 is-multiline  '>
-
-                        {
-                            tables
-                        }
+                <div className='column is-6 welcome__master p-5 my-4 '>
+                    <Link to='/admin/blogs'>
 
 
-                    </div>
-
+                        <div className="card">
+                            <div className="card-content">
+                                <div className="content yekan">
+                                    اضافه کردن پست جدید
+                                </div>
+                            </div>
+                        </div>
+                    </Link>
                 </div>
+
+                <div className='column is-6 welcome__master p-5 my-4'>
+                    <Link to='/admin/site-settings/info'>
+
+
+                        <div className="card">
+                            <div className="card-content">
+                                <div className="content yekan">
+                                    تنظیمات
+                                </div>
+                            </div>
+                        </div>
+                    </Link>
+                </div>
+
 
 
             </div>
