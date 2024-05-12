@@ -6,10 +6,11 @@ import {getBlogs, url} from "../services/service";
 import axios from "axios";
 import {toast} from "react-toastify";
 import {useSelector} from "react-redux";
-import { userinfoSelector} from "../slices/UserSlice";
+import {userinfoSelector} from "../slices/UserSlice";
 import {useNavigate} from "react-router-dom";
 import {Spinner, BlogsTable} from "../components";
 import ReactQuill from "react-quill";
+import {FormControlLabel, FormGroup, Switch} from "@mui/material";
 
 
 const Blogs = () => {
@@ -20,6 +21,7 @@ const Blogs = () => {
     const [image, setImg] = useState('')
     const nav = useNavigate()
     const [value, setValue] = useState('');
+    const [hide, setHide] = useState(true)
 
     // pending
     const [pending, setPending] = useState(false)
@@ -29,7 +31,22 @@ const Blogs = () => {
     const [search, setSearch] = useState('')
 
 
+    const toolbarOptions = [
+        ['bold', 'italic', 'underline', 'strike'],
+        ['blockquote'],
+        ['link', 'image', 'formula'],
+        [{'header': 1}, {'header': 2}],
+        [{'list': 'ordered'}, {'list': 'bullet'}, {'list': 'check'}],
 
+        [{'indent': '-1'}, {'indent': '+1'}],
+        [{'direction': 'rtl'}],
+        [{'size': ['small', false, 'large', 'huge']}],
+        [{'header': [1, 2, 3, 4, 5, 6, false]}],
+        [{'color': []}, {'background': []}],
+
+        [{'align': []}],
+        ['clean']
+    ];
 
 
     const getData = async (page) => {
@@ -89,6 +106,7 @@ const Blogs = () => {
             formdata.append("title", values.title)
             formdata.append("txt", value)
             formdata.append("img", img)
+            formdata.append("hide", hide === true ? 1 : 0)
             setPending(true)
             toast.info('در حال ارسال ...')
             const response = await axios.post(endpoint, formdata, config)
@@ -183,13 +201,13 @@ const Blogs = () => {
             <div className='columns is-variable is-3 mt-3 p-6  is-multiline '>
                 <div className='column is-12 welcome__master '>
                     <h1 className='has-text-centered pinar is-size-4 clrtwotext has-text-weight-bold'>
-                        بلاگ و ما یتعلق به
+                        بلاگ
 
 
                     </h1>
 
                     <article className='subtitle yekan my-3 is-size-6'>
-                        مشاهده و ویرایش پست های بلاگ مربوط به سایت سفیران نوآوری در این قسمت صورت میگیرد.
+                        مشاهده و ویرایش پست های بلاگ مربوط به سایت کلینیک در این قسمت صورت میگیرد.
                     </article>
 
                 </div>
@@ -201,6 +219,14 @@ const Blogs = () => {
                     <h3 className='yekan'>
                         اضافه کردن پست
                     </h3>
+
+                    <FormGroup>
+                        <FormControlLabel onChange={() => setHide(
+                            (prev) => !prev
+                        )} control={<Switch color='error' defaultChecked={hide}/>}
+                                          label={<span className='yekan'>حاوی تصاویر ناخوشایند</span>}/>
+
+                    </FormGroup>
 
                     <Formik initialValues={{
                         title: '',
@@ -224,8 +250,18 @@ const Blogs = () => {
                                 <ErrorMessage component='span' className='has-text-danger yekan mx-auto' name='title'/>
 
 
-                                <label className='label mt-3 yekan' aria-hidden="true">متن پست</label>
-                                <ReactQuill className='has-text-centered' theme="snow" value={value}
+                                <label className='label mt-3 pinar' aria-hidden="true">متن پست</label>
+                                <ReactQuill className='has-text-centered' formats={[
+                                    'header',
+                                    'bold', 'italic', 'underline', 'strike', 'blockquote',
+                                    'list', 'bullet', 'indent',
+                                    'link', 'image', 'color', 'background'
+                                ]} modules={{
+                                    toolbar: toolbarOptions
+                                }}
+
+
+                                            theme="snow" value={value}
                                             onChange={setValue}/>
 
 
@@ -244,7 +280,7 @@ const Blogs = () => {
 
 
                                         <div className='has-text-centered'>
-                                            <img src={URL.createObjectURL(image)} alt="" 
+                                            <img src={URL.createObjectURL(image)} alt=""
                                                  style={{maxWidth: '20rem'}}/>
                                         </div>
 

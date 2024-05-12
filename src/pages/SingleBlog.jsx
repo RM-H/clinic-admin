@@ -1,10 +1,9 @@
 import {useParams} from "react-router-dom";
 
 
-
 import React, {useEffect, useState} from 'react';
 import ReactQuill, {Quill} from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+
 import {getSingleBlog, url, baseurl} from "../services/service";
 import {toast} from "react-toastify";
 import {useSelector} from "react-redux";
@@ -13,6 +12,11 @@ import {Spinner} from "../components";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import 'react-quill/dist/quill.snow.css';
+import {FormControlLabel, FormGroup, Switch} from "@mui/material";
+
+
+
 
 
 const SingleBlog = () => {
@@ -22,10 +26,15 @@ const SingleBlog = () => {
     // edtor
     const [value, setValue] = useState('');
     const [image, setImg] = useState('')
+    const [hide, setHide] = useState(true)
+
+
     const [pending, setPending] = useState(false)
 
 
     const handleUpdate = async (values, value, img) => {
+
+        console.log(value)
 
         const config = {
             headers: {
@@ -41,8 +50,14 @@ const SingleBlog = () => {
             formdata.append("title", values.title)
             formdata.append("txt", value)
             formdata.append("img", img)
+            formdata.append("hide", hide===true ? 1:0)
+
+
             setPending(true)
             toast.info('در حال بروز رسانی')
+
+
+
             const response = await axios.post(endpoint, formdata, config)
 
 
@@ -84,6 +99,7 @@ const SingleBlog = () => {
                 setValue(response.data.blog.txt)
                 console.log(response.data.blog)
 
+
             } else {
                 toast.error(response.data.error)
             }
@@ -98,6 +114,22 @@ const SingleBlog = () => {
         getData().then()
 
     }, []);
+    const toolbarOptions = [
+        ['bold', 'italic', 'underline', 'strike'],
+        ['blockquote'],
+        ['link', 'image', 'formula'],
+        [{'header': 1}, {'header': 2}],
+        [{'list': 'ordered'}, {'list': 'bullet'}, {'list': 'check'}],
+       
+        [{'indent': '-1'}, {'indent': '+1'}],
+        [{'direction': 'rtl'}],
+        [{'size': ['small', false, 'large', 'huge']}],
+        [{'header': [1, 2, 3, 4, 5, 6, false]}],
+        [{ 'color': [] }, { 'background': [] }],
+
+        [{'align': []}],
+        ['clean']
+    ];
 
 
     let content
@@ -116,6 +148,13 @@ const SingleBlog = () => {
                     <img src={`${baseurl}/${data.blog.img}`} className=' my-3' style={{maxWidth: '30rem'}} alt=""/>
                 </div>
 
+                <FormGroup>
+                    <FormControlLabel onChange={()=>setHide(
+                        (prev)=>!prev
+                    )} control={<Switch color='error' defaultChecked={data.blog.hide} />} label={<span className='yekan'>حاوی تصاویر ناخوشایند</span>} />
+
+                </FormGroup>
+
 
                 <Formik initialValues={{
                     title: data.blog.title
@@ -128,7 +167,7 @@ const SingleBlog = () => {
 
                 })} onSubmit={(values, actions) => {
                     handleUpdate(values, value, image);
-                    actions.resetForm();
+
                 }}>
                     {({errors, touched}) => (
                         <Form className=''>
@@ -139,7 +178,16 @@ const SingleBlog = () => {
                             <ErrorMessage component='span' className='has-text-danger yekan mx-auto' name='title'/>
 
 
-                            <ReactQuill  theme="snow" value={value} onChange={setValue}/>
+                            <ReactQuill
+                                formats={[
+                                'header',
+                                'bold', 'italic', 'underline', 'strike', 'blockquote',
+                                'list', 'bullet', 'indent',
+                                'link', 'image' , 'color' , 'background'
+                            ]} modules={{
+                                toolbar: toolbarOptions
+                            }}
+                                value={value} onChange={setValue} theme={'snow'}/>
 
 
                             <label className='label mt-3 yekan' aria-hidden="true"> عکس </label>
