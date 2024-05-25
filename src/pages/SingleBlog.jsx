@@ -97,7 +97,7 @@ const SingleBlog = () => {
 
                 setdata(response.data)
                 setValue(response.data.blog.txt)
-                console.log(response.data.blog)
+
 
 
             } else {

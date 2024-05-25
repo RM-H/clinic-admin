@@ -36,7 +36,7 @@ const WebsiteInfoSettings = () => {
         if (response) {
 
             if (response.data.code === 1) {
-                console.log(response.data)
+
                 setoptions(response.data.options)
                 setnewPosition([Number(response.data.options.lat), Number(response.data.options.lng)])
 

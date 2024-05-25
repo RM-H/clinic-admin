@@ -68,7 +68,7 @@ const Blogs = () => {
             if (response.data.code === 1) {
 
                 setdata(response.data)
-                console.log(response)
+
 
             } else {
                 toast.error(response.data.error)
